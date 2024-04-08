@@ -17,5 +17,14 @@ class RolesTableSeeder extends Seeder
     {
         Role::create(['description' => 'Business']);
         Role::create(['description' => 'Client']);
+
+        $roles = [
+            ['description' => 'Business'],
+            ['description' => 'Client'],
+        ];
+
+        foreach ($roles as $role) {
+            Role::create($role);
+        }
     }
 }

@@ -14,8 +14,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(RolesTableSeeder::class);
-        $this->call(EstatesTableSeeder::class);
-        $this->call(IdTypesSeeder::class);
+        $seeders = [
+            RolesTableSeeder::class,
+            StatesTableSeeder::class,
+            IdTypesSeeder::class
+        ];
+
+        foreach ($seeders as $seeder) {
+            $this->call($seeder);
+        }
+
+        // $this->call(RolesTableSeeder::class);
+        // $this->call(EstatesTableSeeder::class);
+        // $this->call(IdTypesSeeder::class);
     }
 }

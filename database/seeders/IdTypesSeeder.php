@@ -15,8 +15,14 @@ class IdTypesSeeder extends Seeder
      */
     public function run()
     {
-        IdType::create(['description' => 'Cédula de Ciudadanía']);
-        IdType::create(['description' => 'Cédula de extranjería']);
-        IdType::create(['description' => 'NIT']);
+        $idTypes = [
+            ['description' => 'Cédula de Ciudadanía'],
+            ['description' => 'Cédula de extranjería'],
+            ['description' => 'NIT'],
+        ];
+
+        foreach ($idTypes as $idType) {
+            IdType::create($idType);
+        }
     }
 }
