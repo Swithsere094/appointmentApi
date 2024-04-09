@@ -37,6 +37,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_types_id');
+            $table->string('document');
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -71,10 +72,10 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('appointments');
+        Schema::dropIfExists('users');
         Schema::dropIfExists('roles');
         Schema::dropIfExists('states');
         Schema::dropIfExists('id_types');
-        Schema::dropIfExists('users');
-        Schema::dropIfExists('appointments');
     }
 };
