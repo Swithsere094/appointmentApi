@@ -38,6 +38,7 @@ class HomeController extends Controller
         $credentials = $request->only('document', 'password');
 
         if (Auth::attempt($credentials)) {
+            /** @var \App\Models\User $user **/
             $user = Auth::user();
             $token = $user->createToken('TokenName')->plainTextToken;
             return response()->json(['token' => $token], 200);
