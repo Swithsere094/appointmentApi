@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use App\Models\IdType;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Monolog\Logger;
 
 class HomeController extends Controller
 {
@@ -13,18 +17,18 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function userRegister(Request $request)
+    public function userRegister(UserRequest $request)
     {
-        $validate = $this->validate($request, [
-            'docType' => 'required',
-            'document' => 'required | min: 8 | max: 10',
-            'name' => 'required | min: 6 | max: 20',
-            'lastName' => 'required | min: 6 | max: 20',
-            'email' => 'required | email',
-            'password' => 'required | confirmed | min: 6',
-        ]);
+        Logger($request);
 
-        return $validate;
+        User::create([
+            'id_types_id' => $request->docType,
+            'document' => $request->document,
+            'name' => $request->name,
+            'email' => $request->email,
+            'roles_id' => $request->docType == 1 ? 2 : 1,
+            'password' => Hash::make($request->password),
+        ]);
     }
 
     public function getIdTypes()
