@@ -22,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //UserRouters
 Route::get('/getIdTypes', [HomeController::class, 'getIdTypes'])->name('getIdTypes');
 Route::post('/userRegister', [HomeController::class, 'userRegister'])->name('userRegister');
+Route::post('/userLogin', [HomeController::class, 'userLogin'])->name('userLogin');
