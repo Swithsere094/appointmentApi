@@ -16,8 +16,7 @@ class IdTypesSeeder extends Seeder
     public function run()
     {
         $idTypes = [
-            ['description' => 'Cédula de Ciudadanía'],
-            ['description' => 'Cédula de extranjería'],
+            ['description' => 'identification card'],
             ['description' => 'NIT'],
         ];
 

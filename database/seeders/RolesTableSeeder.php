@@ -15,8 +15,6 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        Role::create(['description' => 'Business']);
-        Role::create(['description' => 'Client']);
 
         $roles = [
             ['description' => 'Business'],
