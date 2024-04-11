@@ -34,10 +34,10 @@ class HomeController extends Controller
 
     public function userLogin(Request $request)
     {
-        //Username -> DocId
         $credentials = $request->only('document', 'password');
+        $remember = $request->only('rememberMe')['rememberMe'];
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, $remember)) {
             /** @var \App\Models\User $user **/
             $user = Auth::user();
             $token = $user->createToken('TokenName')->plainTextToken;
