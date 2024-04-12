@@ -51,4 +51,11 @@ class HomeController extends Controller
     {
         return IdType::get(['id', 'description']);
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        return response()->json(['message' => 'Successfully logged out'], 200);
+    }
 }

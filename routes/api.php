@@ -19,7 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//UserRouters
+//LoginRoutes
 Route::get('/getIdTypes', [HomeController::class, 'getIdTypes'])->name('getIdTypes');
 Route::post('/userRegister', [HomeController::class, 'userRegister'])->name('userRegister');
 Route::post('/userLogin', [HomeController::class, 'userLogin'])->name('userLogin');
+Route::post('/logout', [HomeController::class, 'logout']);
