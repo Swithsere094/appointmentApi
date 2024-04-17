@@ -29,7 +29,7 @@ class HomeController extends Controller
             'email' => $request->email,
             'roles_id' => $request->docType == 1 ? 2 : 1,
             'password' => Hash::make($request->password),
-        ]);
+        ])->sendEmailVerificationNotification();
     }
 
     public function userLogin(Request $request)
