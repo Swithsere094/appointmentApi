@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\IdType;
 use App\Models\User;
+use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Laravel\Sanctum\PersonalAccessTokenFactory;
@@ -22,14 +23,19 @@ class HomeController extends Controller
      */
     public function userRegister(UserRequest $request)
     {
-        User::create([
-            'id_types_id' => $request->docType,
-            'document' => $request->document,
-            'name' => $request->name,
-            'email' => $request->email,
-            'roles_id' => $request->docType == 1 ? 2 : 1,
-            'password' => Hash::make($request->password),
-        ])->sendEmailVerificationNotification();
+        try {
+            $user = User::create([
+                'id_types_id' => $request->docType,
+                'document' => $request->document,
+                'name' => $request->name,
+                'email' => $request->email,
+                'roles_id' => $request->docType == 1 ? 2 : 1,
+                'password' => Hash::make($request->password),
+            ])->sendEmailVerificationNotification();
+            return $user;
+        } catch (Exception $e) {
+            throw new AuthorizationException('Register email send failed');
+        }
     }
 
     public function userLogin(Request $request)
