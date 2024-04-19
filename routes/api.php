@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\CodeCheckController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\VerificationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,4 +30,9 @@ Route::post('/userLogin', [HomeController::class, 'userLogin'])->name('userLogin
 Route::post('/logout', [HomeController::class, 'logout']);
 
 //emailVerification
-Route::get('email/verify/{id}', [VerificationController::class, 'verify'])->name('verification.verify');
+Route::get('/email/verify/{id}', [VerificationController::class, 'verify'])->name('verification.verify');
+
+//ResetPasswordRoutes
+Route::post('/password/email',  ForgotPasswordController::class)->name('forgotPassword');
+Route::post('/password/code/check', CodeCheckController::class)->name('codeCheck');
+Route::post('/password/reset', ResetPasswordController::class)->name('resetPassword');
