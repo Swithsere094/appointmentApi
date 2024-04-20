@@ -21,14 +21,6 @@
             border-radius: 8px;
             box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
         }
-        .btn {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-        .btn:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
     </style>
 </head>
 <body>
