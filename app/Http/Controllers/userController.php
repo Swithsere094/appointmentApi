@@ -10,7 +10,7 @@ class userController extends Controller
 {
     public function getBusinessList(Request $request)
     {
-        $businessList = User::where('roles_id', 1)->get();
+        $businessList = (new User)->getBusinessList($request);
         return $businessList;
     }
 }
