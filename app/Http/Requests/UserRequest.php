@@ -27,7 +27,6 @@ class UserRequest extends FormRequest
             'docType' => 'required',
             'document' => 'required | min: 8 | max: 10',
             'name' => 'required | min: 6 | max: 20',
-            'lastName' => 'required | min: 6 | max: 20',
             'email' => 'required | email',
             'password' => 'required | confirmed | min: 6',
         ];
