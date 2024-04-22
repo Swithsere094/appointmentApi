@@ -29,7 +29,7 @@ Route::post('/userLogin', [HomeController::class, 'userLogin'])->name('userLogin
 Route::post('/logout', [HomeController::class, 'logout']);
 
 //emailVerification
-Route::get('/email/verify/{id}', [VerificationController::class, 'verify'])->name('emailVerify');
+Route::get('/email/verify/{id}', [VerificationController::class, 'verify'])->name('verification.verify');
 
 //ResetPassword
 Route::post('/password/email',  [ForgotPasswordController::class, 'forgotPassword'])->name('forgotPassword');
