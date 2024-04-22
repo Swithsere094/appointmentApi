@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Monolog\Logger;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -49,5 +50,19 @@ class User extends Authenticatable implements MustVerifyEmail
     public static function findForPassport($username)
     {
         return static::where('document', $username)->first();
+    }
+
+    public function getBusinessList($request)
+    {
+        $filter = $request->filter;
+        $businessList = $this->where('roles_id', 1);
+        if (isset($filter)) {
+            $businessList->where(function ($query) use ($filter) {
+                $query->where('document', 'LIKE', "%$filter%")
+                    ->orWhere('name', 'LIKE', "%$filter%");
+            });
+        }
+        $businessList = $businessList->orderBy('name', 'asc')->get();
+        return $businessList;
     }
 }
